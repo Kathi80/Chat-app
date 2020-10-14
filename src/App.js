@@ -7,15 +7,15 @@ import MessageForm from './componets/MessageForm';
 function App() {
   const [newMessage, setnewMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  useEffect(() => {
-    db.ref('/messages').on('value', (snapshot) => {
-      const fbMessages = snapshot.val();
-        const convertedMessages = Object.entries(fbMessages || []).map(
-          ([id, message]) => ({
-            ...message,
-            id
-          })
-        )
+    useEffect(() => {
+      db.ref('/messages').on('value', (snapshot) => {
+        const fbMessages = snapshot.val();
+          const convertedMessages = Object.entries(fbMessages || []).map(
+            ([id, message]) => ({
+              ...message,
+              id
+            })
+          )
     setMessages(convertedMessages);
      });
   }, []);
